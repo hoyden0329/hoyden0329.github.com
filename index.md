@@ -12,5 +12,5 @@ title: "About me"
 * I am crazy about computer and biology. I think they both represent the top-notch
     products from manpower and mother natural respectively.
 
-![](./assets/IMG_2094-3.jpg)
+![](./assets/IMG_2094-3.png)
 
