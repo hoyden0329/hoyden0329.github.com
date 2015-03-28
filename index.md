@@ -1,6 +1,7 @@
 ---
 layout: page
 title: "About me"
+group: navigation
 ---
 
 {% include JB/setup %}
@@ -9,8 +10,8 @@ title: "About me"
 
 * I am a fifth year PhD student majoring in [Computational Biology and Bioinformatics](http://cbb.yale.edu/) at [Yale University](http://www.yale.edu/).
 
-* I am crazy about computer and biology. I think they both represent the top-notch
-    products from manpower and mother natural respectively.
+* I am crazy about computer and biology. I think they each represent the top-notch
+    products from manpower and mother natural.
 
-![](./assets/IMG_2094-3.png)
+![](./assets/IMG_2094-4.png)
 
