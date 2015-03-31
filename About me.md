@@ -13,5 +13,5 @@ group: navigation
 * I am crazy about computer and biology. I think they each represent the top-notch
     products from manpower and mother natural.
 
-![](./assets/IMG_2094-4.png)
+![](./assets/images/IMG_2094-4.png)
 
