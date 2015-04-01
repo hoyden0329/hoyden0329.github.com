@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "About me"
+title: "About"
 group: navigation
 ---
 
@@ -15,3 +15,11 @@ group: navigation
 
 ![](./assets/images/IMG_2094-4.png)
 
+### Contact
+
+* Address: 
+	* 300 George St, Suite 503
+	  New Haven, CT, 06511
+	  
+* Email:
+	* xiu.huang@yale.edu 

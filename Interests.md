@@ -1,10 +1,9 @@
 ---
 layout: page
 title: "Interests"
-group: navigation
 ---
 
 {% include JB/setup %}
 
 
-Under construction. 
+Stay tuned! I am working hard to construct it right now~ 

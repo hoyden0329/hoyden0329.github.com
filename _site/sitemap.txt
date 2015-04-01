@@ -1,7 +1,6 @@
 
 xiu-huang.com/About me.html
 xiu-huang.com/archive.html
-xiu-huang.com/assets/images/Contact.html
 xiu-huang.com/atom.xml
 xiu-huang.com/index.html
 xiu-huang.com/Interests.html
