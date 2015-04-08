@@ -4,7 +4,7 @@
  <title>Xiu Huang</title>
  <link href="xiu-huang.com/" rel="self"/>
  <link href="xiu-huang.com"/>
- <updated>2015-04-08T09:37:06-04:00</updated>
+ <updated>2015-04-08T10:22:10-04:00</updated>
  <id>xiu-huang.com</id>
  <author>
    <name>Xiu Huang</name>
@@ -315,16 +315,16 @@ interact&lt;/code&gt;&lt;/pre&gt;</content>
    <id>xiu-huang.com/r/2013/03/22/Work-with-Rstudio-and-Wordpress-blogs</id>
    <content type="html">&lt;p&gt;After some exploration, I finally got it work to publish blogs directly from Rstudio Rmarkdown file, thanks to the direction &lt;a href=&quot;http://wkmor1.wordpress.com/2012/07/01/rchievement-of-the-day-3-bloggin-from-r-14/&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://yihui.name/knitr/demo/wordpress/&quot;&gt;here&lt;/a&gt;. I have also wrapped up my own function to run the whole process automatically.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;post_to_wp &amp;lt;- function (file, title) {
-  library(RWordPress)
-  options(WordpressLogin = c(hoyden0329 = &amp;#39;password&amp;#39;),
-  WordpressURL = &amp;#39;http://hoyden0329.wordpress.com/xmlrpc.php&amp;#39;)
-  getUsersBlogs()
-  library(knitr)
-  opts_knit$set(base.url = &amp;#39;https://dl.dropbox.com/u/11830378/wp/&amp;#39;,
-  base.dir = &amp;#39;/Users/xiuhuang/Dropbox/Public/wp/&amp;#39;)
-  knit2wp(file, title = title)
-}&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;post_to_wp &amp;lt;- function (file, title) {  
+  library(RWordPress)  
+  options(WordpressLogin = c(hoyden0329 = &amp;#39;password&amp;#39;),    
+  WordpressURL = &amp;#39;http://hoyden0329.wordpress.com/xmlrpc.php&amp;#39;)  
+  getUsersBlogs()  
+  library(knitr)  
+  opts_knit$set(base.url = &amp;#39;https://dl.dropbox.com/u/11830378/wp/&amp;#39;,  
+  base.dir = &amp;#39;/Users/xiuhuang/Dropbox/Public/wp/&amp;#39;)  
+  knit2wp(file, title = title)  
+}  &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Basically, after I got the .Rmd file ready, I can just run&lt;/p&gt;
 

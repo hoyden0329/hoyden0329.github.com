@@ -10,16 +10,16 @@ After some exploration, I finally got it work to publish blogs directly from Rst
 
 
 ```
-post_to_wp <- function (file, title) {
-  library(RWordPress)
-  options(WordpressLogin = c(hoyden0329 = 'password'),
-  WordpressURL = 'http://hoyden0329.wordpress.com/xmlrpc.php')
-  getUsersBlogs()
-  library(knitr)
-  opts_knit$set(base.url = 'https://dl.dropbox.com/u/11830378/wp/',
-  base.dir = '/Users/xiuhuang/Dropbox/Public/wp/')
-  knit2wp(file, title = title)
-}
+post_to_wp <- function (file, title) {  
+  library(RWordPress)  
+  options(WordpressLogin = c(hoyden0329 = 'password'),    
+  WordpressURL = 'http://hoyden0329.wordpress.com/xmlrpc.php')  
+  getUsersBlogs()  
+  library(knitr)  
+  opts_knit$set(base.url = 'https://dl.dropbox.com/u/11830378/wp/',  
+  base.dir = '/Users/xiuhuang/Dropbox/Public/wp/')  
+  knit2wp(file, title = title)  
+}  
 ```
 
 

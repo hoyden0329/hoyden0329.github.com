@@ -16,6 +16,8 @@ One negative point about Transmit though is that it is not as free as Fugu. You 
 
 To work interactively with Louise, I simply use Terminal in Mac. I have tried third party softwares like Term2. But I don't really see the benefit of taking that trouble, maybe since I am a lower end user that don't really need that much function. To save trouble of every time type "ssh" and "qsub", I composed an expect script to automate this process. A sample code is shown below:
 
+
+
 ```
 #!/usr/bin/expect
 

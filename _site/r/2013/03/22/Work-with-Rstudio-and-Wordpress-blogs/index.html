@@ -125,16 +125,16 @@
     <div class="content">
       <p>After some exploration, I finally got it work to publish blogs directly from Rstudio Rmarkdown file, thanks to the direction <a href="http://wkmor1.wordpress.com/2012/07/01/rchievement-of-the-day-3-bloggin-from-r-14/">here</a> and <a href="http://yihui.name/knitr/demo/wordpress/">here</a>. I have also wrapped up my own function to run the whole process automatically.</p>
 
-<pre><code>post_to_wp &lt;- function (file, title) {
-  library(RWordPress)
-  options(WordpressLogin = c(hoyden0329 = &#39;password&#39;),
-  WordpressURL = &#39;http://hoyden0329.wordpress.com/xmlrpc.php&#39;)
-  getUsersBlogs()
-  library(knitr)
-  opts_knit$set(base.url = &#39;https://dl.dropbox.com/u/11830378/wp/&#39;,
-  base.dir = &#39;/Users/xiuhuang/Dropbox/Public/wp/&#39;)
-  knit2wp(file, title = title)
-}</code></pre>
+<pre><code>post_to_wp &lt;- function (file, title) {  
+  library(RWordPress)  
+  options(WordpressLogin = c(hoyden0329 = &#39;password&#39;),    
+  WordpressURL = &#39;http://hoyden0329.wordpress.com/xmlrpc.php&#39;)  
+  getUsersBlogs()  
+  library(knitr)  
+  opts_knit$set(base.url = &#39;https://dl.dropbox.com/u/11830378/wp/&#39;,  
+  base.dir = &#39;/Users/xiuhuang/Dropbox/Public/wp/&#39;)  
+  knit2wp(file, title = title)  
+}  </code></pre>
 
 <p>Basically, after I got the .Rmd file ready, I can just run</p>
 
