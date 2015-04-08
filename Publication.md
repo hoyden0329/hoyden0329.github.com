@@ -7,7 +7,7 @@ title: "Publication"
 
 ### Manuscript
 
-
+* **Xiu Huang**, Hongyu Zhao. "Transcription profiles from Paired Normal Samples offers conplementary informative on cancer patient survival." 
 
 ### Accepted
 
