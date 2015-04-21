@@ -9,6 +9,7 @@ xiu-huang.com/Research.html
 xiu-huang.com/rss.xml
 xiu-huang.com/sitemap.txt
 
+xiu-huang.com/r/2015/04/21/How-to-set-random-seed-in-parallel-computing
 xiu-huang.com/computation/2014/03/28/How-to-hack-markdownhere-for-postbox
 xiu-huang.com/r/2013/05/08/Hook-for-pdf-image-insertion
 xiu-huang.com/r/2013/04/25/Parallel-computating-with-R-and-HPC
