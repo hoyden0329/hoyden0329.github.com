@@ -9,12 +9,14 @@ tags : [R, computing]
 One question in parallel computing is to set independent random seed in each of the child. Thing can get pretty messy when the seeds is not set correctly and every one of the child thread will produce the exact the same result or that you can not make your result reproducible when doing parallel computing. 
 I always use the function "mclapply" in "parallel" package in R to conduct parallel conduct parallel computing at one computer node with multiple cores to save some time and make full use of the computation power. The trick to set correctly the random seeds is as following: 
 
+
 ```R
-require("parallel")
-RNGkind("L")
-set.seed(12345)
-mclapply(1:100, function(x){return(x)}, mc.set.seed = T) 
+require("parallel")  
+RNGkind("L")  
+set.seed(12345)  
+mclapply(1:100, function(x){return(x)}, mc.set.seed = T)   
 ```
+
 
 And I figured out this based on the following description at the manual page of "mclapply": 
 
