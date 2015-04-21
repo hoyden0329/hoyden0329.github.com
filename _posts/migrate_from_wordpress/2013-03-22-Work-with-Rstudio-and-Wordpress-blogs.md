@@ -10,7 +10,6 @@ After some exploration, I finally got it work to publish blogs directly from Rst
 
 
 
-```R
 		post_to_wp <- function (file, title) {    
 		  library(RWordPress)    
 		  options(WordpressLogin = c(hoyden0329 = 'password'),      
@@ -21,7 +20,7 @@ After some exploration, I finally got it work to publish blogs directly from Rst
 		  base.dir = '/Users/xiuhuang/Dropbox/Public/wp/')    
 		  knit2wp(file, title = title)    
 		}    
-```
+
 
 
 
