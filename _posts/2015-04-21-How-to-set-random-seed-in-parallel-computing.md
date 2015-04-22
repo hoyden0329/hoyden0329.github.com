@@ -10,12 +10,11 @@ One question in parallel computing is to set independent random seed in each of 
 I always use the function "mclapply" in "parallel" package in R to conduct parallel conduct parallel computing at one computer node with multiple cores to save some time and make full use of the computation power. The trick to set correctly the random seeds is as following: 
 
 
-	```R
 	require("parallel")  
 	RNGkind("L")  
 	set.seed(12345)  
 	mclapply(1:100, function(x){return(x)}, mc.set.seed = T)   
-	```
+
 	
 
 And I figured out this based on the following description at the manual page of "mclapply": 

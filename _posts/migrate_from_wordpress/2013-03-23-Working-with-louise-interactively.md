@@ -18,20 +18,19 @@ To work interactively with Louise, I simply use Terminal in Mac. I have tried th
 
 
 
-```
-#!/usr/bin/expect
+	#!/usr/bin/expect
+	
+	set timeout 20 
+	
+	set usr "username"
+	set password "password"
+	
+	spawn ssh $usr@louise.hpc.yale.edu -XYC
+	expect "username@louise.hpc.yale.edu's password:"
+	send "$password\r"
+	
+	expect "username@login-*-*:"
+	send "qsub -I -X -l nodes=1:ppn=1\r"
+	
+	interact
 
-set timeout 20 
-
-set usr "username"
-set password "password"
-
-spawn ssh $usr@louise.hpc.yale.edu -XYC
-expect "username@louise.hpc.yale.edu's password:"
-send "$password\r"
-
-expect "username@login-*-*:"
-send "qsub -I -X -l nodes=1:ppn=1\r"
-
-interact
-```
