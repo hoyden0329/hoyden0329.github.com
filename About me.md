@@ -20,7 +20,7 @@ title: About
 
 ![](<./assets/images/IMG_2094-2.png>)
 
-### Contact
+### Contact me
 
 -   Address:
 
@@ -29,4 +29,4 @@ title: About
 
 -   Email:
 
-    -   xiu.huang\@yale.edu
+    -   xiuDOThuangATyaleDOTedu
