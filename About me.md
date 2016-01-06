@@ -18,10 +18,6 @@ title: About
 
 -   Click [Curriculum Vitae](</assets/pdf/XiuHuang.pdf>) to know more about me.
 
--   Click [here](</research.html>) to know more about my research.
-
--   Click [here](</interests.html>) to know more about my life interests.
-
 ![](<./assets/images/IMG_2094-2.png>)
 
 ### Contact me
