@@ -17,8 +17,9 @@ the understanding the underlying mechanisms them.
 
 ![](<assets/images/research1.png>)
 
-Our proposed method IBPA identified more cancer related pathway level change in
-three relevant tissues compared with Gene Set Enrichment Analysis (GSEA).
+\> Figure1: Our proposed method IBPA identified more cancer related pathway
+level change in three relevant tissues compared with Gene Set Enrichment
+Analysis (GSEA).
 
  
 
@@ -28,8 +29,8 @@ three relevant tissues compared with Gene Set Enrichment Analysis (GSEA).
 
 ![](<assets/images/research2.png>)
 
-In different cancer cohorts in TCGA, adjacent normal tissues always provide
-complementary information towards survival prediction.
+\> Figure 2: In different cancer cohorts in TCGA, adjacent normal tissues always
+provide complementary information towards survival prediction.
 
  
 
@@ -37,8 +38,9 @@ complementary information towards survival prediction.
 
 ![](<assets/images/research3.png>)
 
-Our proposed somatic mutation calling method always gives the best ROC curve in
-terms of predicting the spiked-in mutation proportions (panel 1: 1%; panel 2:
-0.5%; panel 3: 0.2%), simulating the real case of circulating tumor DNA samples
+\> Figure 3: Our proposed somatic mutation calling method always gives the best
+ROC curve in terms of predicting the spiked-in mutation proportions (panel 1:
+1%; panel 2: 0.5%; panel 3: 0.2%), simulating the real case of circulating tumor
+DNA samples
 
  
