@@ -16,7 +16,7 @@ title: About
 -   I am crazy about computer and biology. I think they each represent the
     top-notch products from manpower and mother natural.
 
--   Click [Curriculum Vitae](</assets/pdf/XiuHuang.pdf>) to know more about me.
+-   Click [Curriculum Vitae](</assets/pdf/XiuHuang.pdf>){:target="_blank"} to know more about me.
 
 ![](<./assets/images/IMG_2094-2.png>)
 
