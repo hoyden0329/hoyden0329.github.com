@@ -10,8 +10,8 @@ title: About
     [blog](</archive.html>)!
 
 -   I am a fifth year PhD student majoring in [Computational Biology and
-    Bioinformatics](<http://cbb.yale.edu/>) at [Yale
-    University](<http://www.yale.edu/>).
+    Bioinformatics](<http://cbb.yale.edu/>){:target="_blank"} at [Yale
+    University](<http://www.yale.edu/>){:target="_blank"}.
 
 -   I am crazy about computer and biology. I think they each represent the
     top-notch products from manpower and mother natural.
