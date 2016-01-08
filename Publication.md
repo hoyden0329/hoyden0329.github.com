@@ -1,4 +1,5 @@
 ---
+group: navigation
 layout: page
 title: Publication
 ---
