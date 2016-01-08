@@ -11,9 +11,9 @@ title: Publication
 -   **Xiu Huang**, Wing Lam, Jiehuan Sun, Yung-Chi Cheng, Hongyu Zhao. 2016.
     “Somatic Mutation Calling for Sequencing Data of Circulating Tumor DNAs".
 
--   Jiehuan Sun, Jose Herazo-Maya, \*\*Xiu Huang\*\*, Naftali Kaminski, Hongyu
-    Zhao. 2016. “Distance-correlation based Gene Set Analysis in Longitudinal
-    Studies.” Submitted to the \*Bioinformatics\*.
+-   Jiehuan Sun, Jose Herazo-Maya, **Xiu Huang**, Naftali Kaminski, Hongyu Zhao.
+    2016. “Distance-correlation based Gene Set Analysis in Longitudinal
+    Studies.” Submitted to the *Bioinformatics*.
 
 ### Accepted
 
