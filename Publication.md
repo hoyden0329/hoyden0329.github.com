@@ -19,8 +19,10 @@ title: Publication
 
 -   **Xiu Huang**, David F. Stern, Hongyu Zhao. 2016. “Transcriptional Profiles
     from Paired Normal Samples Offer Complementary Information on Cancer Patient
-    Survival – Evidence from TCGA Pan-Cancer Data". To appear in the *Scientific
-    Reports*.
+    Survival – Evidence from TCGA Pan-Cancer Data". *Scientific Reports*
+    6：20567. doi:10.1038/srep20567. [
+    [Website](<http://www.nature.com/articles/srep20567>) ][
+    [PDF](</assets/pdf/paper6.pdf>) ]
 
 -   Lam Wing, Zaoli Jiang, Fulan Guan, **Xiu Huang**, Rong Hu, Jing Wang, Scott
     Bussom, et al. 2015. “PHY906(KD018), an Adjuvant Based on a 1800-Year-Old
