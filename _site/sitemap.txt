@@ -1,11 +1,11 @@
 
-xiu-huang.com/About me.html
-xiu-huang.com/archive.html
+xiu-huang.com/About%20me
+xiu-huang.com/Interests
+xiu-huang.com/Publication
+xiu-huang.com/Research
+xiu-huang.com/archive
 xiu-huang.com/atom.xml
-xiu-huang.com/index.html
-xiu-huang.com/Interests.html
-xiu-huang.com/Publication.html
-xiu-huang.com/Research.html
+xiu-huang.com/
 xiu-huang.com/rss.xml
 xiu-huang.com/sitemap.txt
 

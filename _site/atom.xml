@@ -4,7 +4,7 @@
  <title>Xiu Huang</title>
  <link href="xiu-huang.com/" rel="self"/>
  <link href="xiu-huang.com"/>
- <updated>2015-04-30T15:19:41-04:00</updated>
+ <updated>2016-04-10T15:58:16-04:00</updated>
  <id>xiu-huang.com</id>
  <author>
    <name>Xiu Huang</name>
@@ -17,22 +17,27 @@
    <link href="xiu-huang.com/r/2015/04/21/How-to-set-random-seed-in-parallel-computing"/>
    <updated>2015-04-21T00:00:00-04:00</updated>
    <id>xiu-huang.com/r/2015/04/21/How-to-set-random-seed-in-parallel-computing</id>
-   <content type="html">&lt;p&gt;One question in parallel computing is to set independent random seed in each of the child. Thing can get pretty messy when the seeds is not set correctly and every one of the child thread will produce the exact the same result or that you can not make your result reproducible when doing parallel computing. I always use the function “mclapply” in “parallel” package in R to conduct parallel conduct parallel computing at one computer node with multiple cores to save some time and make full use of the computation power. The trick to set correctly the random seeds is as following:&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;One question in parallel computing is to set independent random seed in each of the child. Thing can get pretty messy when the seeds is not set correctly and every one of the child thread will produce the exact the same result or that you can not make your result reproducible when doing parallel computing. 
+I always use the function “mclapply” in “parallel” package in R to conduct parallel conduct parallel computing at one computer node with multiple cores to save some time and make full use of the computation power. The trick to set correctly the random seeds is as following:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;require(&amp;quot;parallel&amp;quot;)  
-RNGkind(&amp;quot;L&amp;quot;)  
+&lt;pre&gt;&lt;code&gt;require(&quot;parallel&quot;)  
+RNGkind(&quot;L&quot;)  
 set.seed(12345)  
-mclapply(1:100, function(x){return(x)}, mc.set.seed = T)   &lt;/code&gt;&lt;/pre&gt;
+mclapply(1:100, function(x){return(x)}, mc.set.seed = T)   
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;And I figured out this based on the following description at the manual page of “mclapply”:&lt;/p&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;If mc.set.seed = FALSE, the child process has the same initial random number generator (RNG) state as the current R session. If the RNG has been used (or .Random.seed was restored from a saved workspace), the child will start drawing random numbers at the same point as the current session. If the RNG has not yet been used, the child will set a seed based on the time and process ID when it first uses the RNG: this is pretty much guaranteed to give a different random-number stream from the current session and any other child process.&lt;/p&gt;
+  &lt;p&gt;If mc.set.seed = FALSE, the child process has the same initial random number generator (RNG) state as the current R session. If the RNG has been used (or .Random.seed was restored from a saved workspace), the child will start drawing random numbers at the same point as the current session. If the RNG has not yet been used, the child will set a seed based on the time and process ID when it first uses the RNG: this is pretty much guaranteed to give a different random-number stream from the current session and any other child process.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;The behaviour with mc.set.seed = TRUE is different only if RNGkind(“L’Ecuyer-CMRG”) has been selected. Then each time a child is forked it is given the next stream (see nextRNGStream). So if you select that generator, set a seed and call mc.reset.stream just before the first use of mcparallel the results of simulations will be reproducible provided the same tasks are given to the first, second, … forked process.&lt;/p&gt;
-&lt;/blockquote&gt;</content>
+  &lt;p&gt;The behaviour with mc.set.seed = TRUE is different only if RNGkind(“L’Ecuyer-CMRG”) has been selected. Then each time a child is forked it is given the next stream (see nextRNGStream). So if you select that generator, set a seed and call mc.reset.stream just before the first use of mcparallel the results of simulations will be reproducible provided the same tasks are given to the first, second, … forked process.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+</content>
  </entry>
  
  <entry>
@@ -40,23 +45,19 @@ mclapply(1:100, function(x){return(x)}, mc.set.seed = T)   &lt;/code&gt;&lt;/pre
    <link href="xiu-huang.com/computation/2014/03/28/How-to-hack-markdownhere-for-postbox"/>
    <updated>2014-03-28T00:00:00-04:00</updated>
    <id>xiu-huang.com/computation/2014/03/28/How-to-hack-markdownhere-for-postbox</id>
-   <content type="html">&lt;p&gt;&lt;a href=&quot;http://markdown-here.com&quot;&gt;Markdown-here&lt;/a&gt; is a great extension to enable markdown style format in email. However, the add-on available for &lt;a href=&quot;http://www.postbox-inc.com&quot;&gt;Postbox&lt;/a&gt; does not support preference setting, which means that you can’t enable “TeX Mathematical Formulae Support” in the preference page. The way to solve this is to hard code the add-on installation file to enable Tex support. Below is the detailed steps:&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;&lt;a href=&quot;http://markdown-here.com&quot;&gt;Markdown-here&lt;/a&gt; is a great extension to enable markdown style format in email. However, the add-on available for &lt;a href=&quot;http://www.postbox-inc.com&quot;&gt;Postbox&lt;/a&gt; does not support preference setting, which means that you can’t enable “TeX Mathematical Formulae Support” in the preference page. The way to solve this is to hard code the add-on installation file to enable Tex support. Below is the detailed steps:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;The markdown-here add-on for Postbox (markdown_here-2.10.0-fx.xpi) can be downloaded &lt;a href=&quot;https://addons.mozilla.org/en-US/thunderbird/addon/markdown-here/&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
-
-&lt;li&gt;Change the extension of the .xpi file to .zip.&lt;/li&gt;
-
-&lt;li&gt;Do not unzip the file; try to use software that can change files inside the zip folder directly. The one I used is &lt;a href=&quot;http://www.barebones.com/products/bbedit/&quot;&gt;BBEdit&lt;/a&gt;.&lt;/li&gt;
-
-&lt;li&gt;Locate the file ~/Downloads/markdown_here-2.10.0-fx.zip/common/markdown-render.js.&lt;/li&gt;
-
-&lt;li&gt;Change line 85 &lt;code&gt;math: userprefs[&amp;#39;math-enabled&amp;#39;] ? mathify : null,&lt;/code&gt; to &lt;code&gt;math: mathify&lt;/code&gt;.&lt;/li&gt;
-
-&lt;li&gt;Save changes and change extension of markdown_here-2.10.0-fx back to .xpi.&lt;/li&gt;
-
-&lt;li&gt;Install add-on in Postbox and now formulas in markdown formatted emails will get rendered.&lt;/li&gt;
-&lt;/ul&gt;</content>
+  &lt;li&gt;The markdown-here add-on for Postbox (markdown_here-2.10.0-fx.xpi) can be downloaded &lt;a href=&quot;https://addons.mozilla.org/en-US/thunderbird/addon/markdown-here/&quot;&gt;here&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Change the extension of the .xpi file to .zip.&lt;/li&gt;
+  &lt;li&gt;Do not unzip the file; try to use software that can change files inside the zip folder directly. The one I used is &lt;a href=&quot;http://www.barebones.com/products/bbedit/&quot;&gt;BBEdit&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Locate the file ~/Downloads/markdown_here-2.10.0-fx.zip/common/markdown-render.js.&lt;/li&gt;
+  &lt;li&gt;Change line 85 &lt;code&gt;math: userprefs[&#39;math-enabled&#39;] ? mathify : null,&lt;/code&gt; to &lt;code&gt;math: mathify&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Save changes and change extension of markdown_here-2.10.0-fx back to .xpi.&lt;/li&gt;
+  &lt;li&gt;Install add-on in Postbox and now formulas in markdown formatted emails will get rendered.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
  </entry>
  
  <entry>
@@ -64,24 +65,29 @@ mclapply(1:100, function(x){return(x)}, mc.set.seed = T)   &lt;/code&gt;&lt;/pre
    <link href="xiu-huang.com/r/2013/05/08/Hook-for-pdf-image-insertion"/>
    <updated>2013-05-08T00:00:00-04:00</updated>
    <id>xiu-huang.com/r/2013/05/08/Hook-for-pdf-image-insertion</id>
-   <content type="html">&lt;p&gt;Simple insertion of multiple-page pdf figures in Rmd file can be realized using &lt;a href=&quot;http://yihui.name/knitr/hooks&quot;&gt;hooks&lt;/a&gt; and &lt;a href=&quot;http://www.imagemagick.org/script/index.php&quot;&gt;ImageMagick&lt;/a&gt;.&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;Simple insertion of multiple-page pdf figures in Rmd file can be realized using &lt;a href=&quot;http://yihui.name/knitr/hooks&quot;&gt;hooks&lt;/a&gt; and &lt;a href=&quot;http://www.imagemagick.org/script/index.php&quot;&gt;ImageMagick&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;Here is a hook function that I wrote to implement this function:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;knit_hooks$set(pdf = function(before, options, envir) {
 	if (before) {
-		cmd = paste(&amp;quot;convert -density 150 &amp;quot;, options$fig.pdf, &amp;quot; ./&amp;quot;, options$label,&amp;quot;.png&amp;quot;, sep=&amp;#39;&amp;#39;)
+		cmd = paste(&quot;convert -density 150 &quot;, options$fig.pdf, &quot; ./&quot;, options$label,&quot;.png&quot;, sep=&#39;&#39;)
 		system(cmd)
-	}})&lt;/code&gt;&lt;/pre&gt;
+	}})
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Say to insert the 3rd page of a pdf file into the Rmd file to both generate png image file for html report and high quality pdf image file for beamer report and pdf report, one can use the following code chunk:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;```{r testfig1, pdf=TRUE, fig.pdf=&amp;quot;simu2_plot.pdf[3]&amp;quot;, fig.cap=&amp;quot;Third page of pdf file simu2_plot.pdf.&amp;quot;}
+&lt;pre&gt;&lt;code&gt;```{r testfig1, pdf=TRUE, fig.pdf=&quot;simu2_plot.pdf[3]&quot;, fig.cap=&quot;Third page of pdf file simu2_plot.pdf.&quot;}
 library(png)
 library(grid)
-img &amp;lt;- readPNG(&amp;quot;./testfig1.png&amp;quot;)
+img &amp;lt;- readPNG(&quot;./testfig1.png&quot;)
 grid.raster(img)
-```&lt;/code&gt;&lt;/pre&gt;</content>
+```
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
  </entry>
  
  <entry>
@@ -89,15 +95,18 @@ grid.raster(img)
    <link href="xiu-huang.com/r/2013/04/25/Parallel-computating-with-R-and-HPC"/>
    <updated>2013-04-25T00:00:00-04:00</updated>
    <id>xiu-huang.com/r/2013/04/25/Parallel-computating-with-R-and-HPC</id>
-   <content type="html">&lt;p&gt;Generally, there are two ways to realize R parallel computation on HPC. The first way is to encode parallel computation in the code so that each runing of the script will be significantly faster than runing on a single thread. One can use Rmpi package with OpenMPI to code as well as submit to HPC to run it. The second way is to submit multiple single thread jobs to clusters to run concurrently. One can take advantage of the SimpleQueue submition script to submit their jobs. Below lists several resources to get references to.&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;Generally, there are two ways to realize R parallel computation on HPC. The first way is to encode parallel computation in the code so that each runing of the script will be significantly faster than runing on a single thread. One can use Rmpi package with OpenMPI to code as well as submit to HPC to run it. The second way is to submit multiple single thread jobs to clusters to run concurrently. One can take advantage of the SimpleQueue submition script to submit their jobs. Below lists several resources to get references to.&lt;/p&gt;
 
-&lt;h2 id=&quot;mpi_under_pbs&quot;&gt;MPI under PBS&lt;/h2&gt;
+&lt;h2 id=&quot;mpi-under-pbs&quot;&gt;MPI under PBS&lt;/h2&gt;
+&lt;p&gt;A good Rmpi tutorial with sample code and submition examples: &lt;a href=&quot;http://math.acadiau.ca/ACMMaC/Rmpi/index.html&quot;&gt;Link&lt;/a&gt;. 
+Specific guidance of runing MPI under PBS on Yale HPC systems:
+&lt;a href=&quot;http://maguro.cs.yale.edu/mediawiki/index.php/MPI_under_PBS&quot;&gt;Link&lt;/a&gt;. (Note that the directory of openmpi is actually not locating under the directory that the web page suggests. Openmpi is right now located at /usr/local/cluster/software/installation/openmpi/. Add this line to your .bash_profile file: PATH=/usr/local/cluster/software/installation/openmpi/openmpi-gcc-1.6.3/bin:$PATH)&lt;/p&gt;
 
-&lt;p&gt;A good Rmpi tutorial with sample code and submition examples: &lt;a href=&quot;http://math.acadiau.ca/ACMMaC/Rmpi/index.html&quot;&gt;Link&lt;/a&gt;. Specific guidance of runing MPI under PBS on Yale HPC systems: &lt;a href=&quot;http://maguro.cs.yale.edu/mediawiki/index.php/MPI_under_PBS&quot;&gt;Link&lt;/a&gt;. (Note that the directory of openmpi is actually not locating under the directory that the web page suggests. Openmpi is right now located at /usr/local/cluster/software/installation/openmpi/. Add this line to your .bash_profile file: PATH=/usr/local/cluster/software/installation/openmpi/openmpi-gcc-1.6.3/bin:$PATH)&lt;/p&gt;
+&lt;h2 id=&quot;simplequeue-submition&quot;&gt;SimpleQueue submition&lt;/h2&gt;
+&lt;p&gt;Detailed information about SimpleQueue is available at &lt;a href=&quot;http://maguro.cs.yale.edu/mediawiki/index.php/SimpleQueue&quot;&gt;Link&lt;/a&gt;. The advantage of SimpleQueue is that you can reuse a script and resubmit it to multiple runs on the cluster without the need to duplicate the code. One way to save workspace of each run to a distinct file is possible by using R command line arguments. A good reference for passing arguments to R code in command line is &lt;a href=&quot;http://quantitative-ecology.blogspot.com/2007/08/including-arguments-in-r-cmd-batch-mode.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;simplequeue_submition&quot;&gt;SimpleQueue submition&lt;/h2&gt;
-
-&lt;p&gt;Detailed information about SimpleQueue is available at &lt;a href=&quot;http://maguro.cs.yale.edu/mediawiki/index.php/SimpleQueue&quot;&gt;Link&lt;/a&gt;. The advantage of SimpleQueue is that you can reuse a script and resubmit it to multiple runs on the cluster without the need to duplicate the code. One way to save workspace of each run to a distinct file is possible by using R command line arguments. A good reference for passing arguments to R code in command line is &lt;a href=&quot;http://quantitative-ecology.blogspot.com/2007/08/including-arguments-in-r-cmd-batch-mode.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</content>
+</content>
  </entry>
  
  <entry>
@@ -105,26 +114,30 @@ grid.raster(img)
    <link href="xiu-huang.com/r/2013/03/28/From-mark-down-to-everything"/>
    <updated>2013-03-28T00:00:00-04:00</updated>
    <id>xiu-huang.com/r/2013/03/28/From-mark-down-to-everything</id>
-   <content type="html">&lt;p&gt;Markdown is definitely easier and more friendly than latex and other languages. The question is: can we just use markdown and get everything done? The answer is simply, Pandoc! Yes. There is an existing tool available for transfering mardown file .md to latex document, beamer slides, word, ppt and so on. This is pandoc and this tool is cool. Some details are not so perfect though. After hands on pandoc and play with it for one day, I found several little defects. For example, you can’t insert a table into markdown conveniently using xtable package in R and being able to translate it into both latex and html. You can do both of course. But just not at the same time, on the same file. Also, sometimes you won’t be able to get a very nice format when trying to stuck lots of information into one slide, which needs manual modification and separation of slides. Another two minor issues are with png figure quality and beamer level construction. So I wrote several little scripts to help pandoc make things right and adapt to my specific needs.&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;Markdown is definitely easier and more friendly than latex and other languages. The question is: can we just use markdown and get everything done? The answer is simply, Pandoc! Yes. There is an existing tool available for transfering mardown file .md to latex document, beamer slides, word, ppt and so on. This is pandoc and this tool is cool. 
+Some details are not so perfect though. After hands on pandoc and play with it for one day, I found several little defects. For example, you can’t insert a table into markdown conveniently using xtable package in R and being able to translate it into both latex and html. You can do both of course. But just not at the same time, on the same file. Also, sometimes you won’t be able to get a very nice format when trying to stuck lots of information into one slide, which needs manual modification and separation of slides. Another two minor issues are with png figure quality and beamer level construction. So I wrote several little scripts to help pandoc make things right and adapt to my specific needs.&lt;/p&gt;
+
 &lt;!-- more --&gt;
+
 &lt;p&gt;So here is my workflow to start with markdown and get html, a latex report in pdf, and a beamer report at the same time:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;I firstly start writing a markdown file from a customized template file. You can set up your own template .Rmd file in Rstudio at &lt;code&gt;/Applications/RStudio.app/Contents/Resources/resources/templates/r_markdown.Rmd&lt;/code&gt;. My template file is customized like this:&lt;/p&gt;
+  &lt;li&gt;
+    &lt;p&gt;I firstly start writing a markdown file from a customized template file. You can set up your own template .Rmd file in Rstudio at &lt;code&gt;/Applications/RStudio.app/Contents/Resources/resources/templates/r_markdown.Rmd&lt;/code&gt;. My template file is customized like this:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;  % Data Analysis Report
+    &lt;pre&gt;&lt;code&gt;  % Data Analysis Report
   % Author 
   % Date
   ``` {r setup, cache=FALSE, include=FALSE}
-  opts_knit$set(root.dir = gsub(&amp;quot;report&amp;quot;, &amp;quot;data&amp;quot;, getwd())) % set working directory to where data is saved
-  opts_knit$set(aliases=c(h=&amp;#39;fig.height&amp;#39;, w=&amp;#39;fig.width&amp;#39;,                                                                         
-                  cap=&amp;#39;fig.cap&amp;#39;, scap=&amp;#39;fig.scap&amp;#39;))                                                                               
-  opts_knit$set(eval.after = c(&amp;#39;fig.cap&amp;#39;,&amp;#39;fig.scap&amp;#39;))   
+  opts_knit$set(root.dir = gsub(&quot;report&quot;, &quot;data&quot;, getwd())) % set working directory to where data is saved
+  opts_knit$set(aliases=c(h=&#39;fig.height&#39;, w=&#39;fig.width&#39;,                                                                         
+                  cap=&#39;fig.cap&#39;, scap=&#39;fig.scap&#39;))                                                                               
+  opts_knit$set(eval.after = c(&#39;fig.cap&#39;,&#39;fig.scap&#39;))   
   knit_hooks$set(document = function(x) {                                                                                        
-    gsub(&amp;#39;(\\\\end\\{knitrout\\}[\n]+)&amp;#39;, &amp;#39;\\1\\\\noindent &amp;#39;, x)                                                               
+    gsub(&#39;(\\\\end\\{knitrout\\}[\n]+)&#39;, &#39;\\1\\\\noindent &#39;, x)                                                               
   })   
-  opts_chunk$set(fig.height=5, fig.width=8, dev=c(&amp;#39;png&amp;#39;,&amp;#39;pdf&amp;#39;)) % produce both png figure and pdf figure
+  opts_chunk$set(fig.height=5, fig.width=8, dev=c(&#39;png&#39;,&#39;pdf&#39;)) % produce both png figure and pdf figure
   options(width=60)
   library(xtable)
   library(gplots)
@@ -135,15 +148,15 @@ grid.raster(img)
   # Reference
 
   ```{r pandoc, echo=FALSE}
-  setwd(gsub(&amp;quot;data&amp;quot;, &amp;quot;report&amp;quot;, getwd())) % set working directory back to report directory
-  system(&amp;quot;perl ~/my/directory/to/latextabletransfer.pl this_report.Rmd&amp;quot;) % automatically call a perl script to generate latex report and beamer slides
-  ```&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
+  setwd(gsub(&quot;data&quot;, &quot;report&quot;, getwd())) % set working directory back to report directory
+  system(&quot;perl ~/my/directory/to/latextabletransfer.pl this_report.Rmd&quot;) % automatically call a perl script to generate latex report and beamer slides
+  ```
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The script used in the above script is written in perl and pasted below.&lt;/p&gt;
 
-&lt;li&gt;
-&lt;p&gt;The script used in the above script is written in perl and pasted below.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  ##############################################
+    &lt;pre&gt;&lt;code&gt;  ##############################################
   ## latextabletransfer.pl
   ## Depends on allowframebreaks.pl 
   ## and beamerleveladd.pl
@@ -155,41 +168,41 @@ grid.raster(img)
   ##############################################
   #!perl
   $file = $ARGV[0];
-  # print &amp;quot;$file\n&amp;quot;;
+  # print &quot;$file\n&quot;;
   open FILE, $file;
   while(&amp;lt;FILE&amp;gt;){
       $line = $_;
-  #     print &amp;quot;$line&amp;quot;;
+  #     print &quot;$line&quot;;
   	if($line =~ /print\(xtable\(.*\).*\)/){
-  		$line =~ s/type\=\&amp;quot;html\&amp;quot;/comment\=F/;
+  		$line =~ s/type\=\&quot;html\&quot;/comment\=F/;
   	}
   	if($line =~ /\`\`\`\{r pandoc.*\}/){
-  		$line = &amp;quot;&amp;quot;;
+  		$line = &quot;&quot;;
   		@IN = &amp;lt;FILE&amp;gt;;
   	}
   	$res = $res.$line;
   }
   close FILE;
   $file =~ s/\./2\./;
-  # print &amp;quot;$file\n&amp;quot;;
-  open RES, &amp;quot;&amp;gt;$file&amp;quot;;
+  # print &quot;$file\n&quot;;
+  open RES, &quot;&amp;gt;$file&quot;;
   print RES $res;
   close RES;
-  system(&amp;quot;Rscript -e \&amp;quot;library(knitr); knit(&amp;#39;$file&amp;#39;)\&amp;quot;&amp;quot;);
+  system(&quot;Rscript -e \&quot;library(knitr); knit(&#39;$file&#39;)\&quot;&quot;);
   $file =~ s/\.Rmd/\.md/;
   $in = $file;
   $file =~ s/2\.md/\.tex/;
   $out1 = $file;
   $file =~ s/\.tex/\_talk\.tex/;
   $out2 = $file;
-  system(&amp;quot;pandoc -s &amp;#39;$in&amp;#39; -o &amp;#39;$out1&amp;#39; --bibli ref.bib&amp;quot;);
-  system(&amp;quot;perl ~/directory/to/allowframebreaks.pl &amp;#39;$out1&amp;#39;&amp;quot;);
-  
-  system(&amp;quot;perl ~/directory/to/beamerleveladd.pl &amp;#39;$in&amp;#39;&amp;quot;);
-  system(&amp;quot;pandoc -s &amp;#39;$in&amp;#39; -t beamer --slide-level 3 -o &amp;#39;$out2&amp;#39; --bibli ref.bib&amp;quot;);
-  system(&amp;quot;perl ~/directory/to/allowframebreaks.pl &amp;#39;$out2&amp;#39;&amp;quot;);
-  
-  
+  system(&quot;pandoc -s &#39;$in&#39; -o &#39;$out1&#39; --bibli ref.bib&quot;);
+  system(&quot;perl ~/directory/to/allowframebreaks.pl &#39;$out1&#39;&quot;);
+    
+  system(&quot;perl ~/directory/to/beamerleveladd.pl &#39;$in&#39;&quot;);
+  system(&quot;pandoc -s &#39;$in&#39; -t beamer --slide-level 3 -o &#39;$out2&#39; --bibli ref.bib&quot;);
+  system(&quot;perl ~/directory/to/allowframebreaks.pl &#39;$out2&#39;&quot;);
+    
+    
   ##############################################
   ## allowframebreaks.pl 
   ## Used in latextabletransfer.pl
@@ -200,14 +213,14 @@ grid.raster(img)
   ##############################################
   #!perl
   $file = $ARGV[0];
-  # print &amp;quot;$file\n&amp;quot;;
+  # print &quot;$file\n&quot;;
   open FILE, $file;
   # $file =~ s/\./2\./;
-  # print &amp;quot;$file\n&amp;quot;;
-  $res = &amp;quot;&amp;quot;;
+  # print &quot;$file\n&quot;;
+  $res = &quot;&quot;;
   while(&amp;lt;FILE&amp;gt;){
       $line = $_;
-  	print &amp;quot;$line&amp;quot;;
+  	print &quot;$line&quot;;
   	if($line =~ /.*\\begin\{frame\}.*\\frametitle.*/){
   		$line =~ s/\\begin\{frame\}/\\begin\{frame\}\[allowframebreaks\]/;
   	}
@@ -215,16 +228,16 @@ grid.raster(img)
   		$line =~ s/png/pdf/;
   	}
   	if($line =~ /\\begin\{table\}.*/){
-  		$line = $line.&amp;quot;\\small\n&amp;quot;;
+  		$line = $line.&quot;\\small\n&quot;;
   	}
   	$res = $res.$line;
   }
   close FILE;
-  open RES, &amp;quot;&amp;gt;$file&amp;quot;;
+  open RES, &quot;&amp;gt;$file&quot;;
   print RES $res;
   close RES;
-  
-  
+    
+    
   ##############################################
   ## beamerleveladd.pl 
   ## Used in latextabletransfer.pl
@@ -233,13 +246,13 @@ grid.raster(img)
   ##############################################
   #!perl
   $file = $ARGV[0];
-  # print &amp;quot;$file\n&amp;quot;;
+  # print &quot;$file\n&quot;;
   open FILE, $file;
   @IN = &amp;lt;FILE&amp;gt;;
   @res = ();
   for($i=0; $i&amp;lt;=$#IN; $i++){
       $temp = substr($IN[$i], 0, 3);
-  #	print &amp;quot;$temp\n&amp;quot;;
+  #	print &quot;$temp\n&quot;;
   	if($temp =~ /\#\s./){
   		$temp2 = substr($IN[$i+1], 0, 3);
   		if($temp2 =~ /\#\#./){
@@ -247,7 +260,7 @@ grid.raster(img)
   		}
   		else{
   			push(@res, $IN[$i]);
-  			push(@res, &amp;quot;\#\#&amp;quot;.$IN[$i]);
+  			push(@res, &quot;\#\#&quot;.$IN[$i]);
   		}
   	}
   	elsif($temp =~ /\#\#\s/){
@@ -257,7 +270,7 @@ grid.raster(img)
   		}
   		else{
   			push(@res, $IN[$i]);
-  			push(@res, &amp;quot;\#&amp;quot;.$IN[$i]);
+  			push(@res, &quot;\#&quot;.$IN[$i]);
   		}
   	}
   	else{
@@ -265,38 +278,32 @@ grid.raster(img)
   	}
   }
   close FILE;
-  open RES, &amp;quot;&amp;gt;$file&amp;quot;;
+  open RES, &quot;&amp;gt;$file&quot;;
   print RES @res;
   close RES;
   open FILE, $file;
   @res = &amp;lt;FILE&amp;gt;;
   for($i=0; $i&amp;lt;=$#res; $i++){
   	$temp = substr($res[$i], 0, 3);
-  	print &amp;quot;$temp\n&amp;quot;;
+  	print &quot;$temp\n&quot;;
   }
-  close FILE;&lt;/code&gt;&lt;/pre&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;The scripts above are mainly to solve the following three issues:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Knit xtable to both html compatible format and pdf compatible format.&lt;/li&gt;
-
-&lt;li&gt;Generate png format figure for html, and pdf format figure for high quality printing in reports and slides.&lt;/li&gt;
-
-&lt;li&gt;Automatically break frames into separate slides when there are too many contents inside one frame.&lt;/li&gt;
-
-&lt;li&gt;Scale table font size to small in pdf reports and slides.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;After finishing your .Rmd file, you can just use the &lt;em&gt;Knit HTML&lt;/em&gt; buttom to automatically knit the document to html, pdf report, and pdf beamer slides. &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/sample_report.Rmd&quot;&gt;Here&lt;/a&gt; is the link to a sample .Rmd file (some of the code is borrowed from &lt;a href=&quot;http://aliquote.org/pub/rmd/demo-rmd-pandoc.html&quot;&gt;A little demonstration of R Markdown and Pandoc&lt;/a&gt;). And &lt;a href=&quot;http://hoyden0329.wordpress.com/2013/03/29/a-sample-report-generate-by-rmarkdown/&quot;&gt;this&lt;/a&gt; is the link to the generated html report that I published in my blog. And these two are the links to the generated &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/sample_report.pdf&quot;&gt;pdf report&lt;/a&gt; and &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/sample_report_talk.pdf&quot;&gt;beamer slides&lt;/a&gt;. If you are interested, you can also download the template files for pandoc that I customized to generate the pdf files (for &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/default.latex&quot;&gt;reports&lt;/a&gt; and &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/default.beamer&quot;&gt;beamer slides&lt;/a&gt;). The default template files are under the directory &lt;code&gt;/usr/local/share/pandoc-1.11.1/data/templates/&lt;/code&gt;.&lt;/p&gt;
-&lt;/li&gt;
+  close FILE;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;The scripts above are mainly to solve the following three issues:
+    &lt;ul&gt;
+      &lt;li&gt;Knit xtable to both html compatible format and pdf compatible format.&lt;/li&gt;
+      &lt;li&gt;Generate png format figure for html, and pdf format figure for high quality printing in reports and slides.&lt;/li&gt;
+      &lt;li&gt;Automatically break frames into separate slides when there are too many contents inside one frame.&lt;/li&gt;
+      &lt;li&gt;Scale table font size to small in pdf reports and slides.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;After finishing your .Rmd file, you can just use the &lt;em&gt;Knit HTML&lt;/em&gt; buttom to automatically knit the document to html, pdf report, and pdf beamer slides. &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/sample_report.Rmd&quot;&gt;Here&lt;/a&gt; is the link to a sample .Rmd file (some of the code is borrowed from &lt;a href=&quot;http://aliquote.org/pub/rmd/demo-rmd-pandoc.html&quot;&gt;A little demonstration of R Markdown and Pandoc&lt;/a&gt;). And &lt;a href=&quot;http://hoyden0329.wordpress.com/2013/03/29/a-sample-report-generate-by-rmarkdown/&quot;&gt;this&lt;/a&gt; is the link to the generated html report that I published in my blog. And these two are the links to the generated &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/sample_report.pdf&quot;&gt;pdf report&lt;/a&gt; and &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/sample_report_talk.pdf&quot;&gt;beamer slides&lt;/a&gt;. If you are interested, you can also download the template files for pandoc that I customized to generate the pdf files (for &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/default.latex&quot;&gt;reports&lt;/a&gt; and &lt;a href=&quot;https://dl.dropbox.com/u/11830378/wp/files/default.beamer&quot;&gt;beamer slides&lt;/a&gt;). The default template files are under the directory &lt;code&gt;/usr/local/share/pandoc-1.11.1/data/templates/&lt;/code&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;After playing with pandoc for these days, I found it a great tool to integrate various formats of documents. Hope you find this post helpful and can customize your own pandoc workflow for reproducible research.&lt;/p&gt;</content>
+&lt;p&gt;After playing with pandoc for these days, I found it a great tool to integrate various formats of documents. Hope you find this post helpful and can customize your own pandoc workflow for reproducible research.&lt;/p&gt;
+
+</content>
  </entry>
  
  <entry>
@@ -304,7 +311,8 @@ grid.raster(img)
    <link href="xiu-huang.com/computation/2013/03/23/Working-with-louise-interactively"/>
    <updated>2013-03-23T00:00:00-04:00</updated>
    <id>xiu-huang.com/computation/2013/03/23/Working-with-louise-interactively</id>
-   <content type="html">&lt;p&gt;Yale owns several large HPC clusters. I normally work with &lt;a href=&quot;http://maguro.cs.yale.edu/mediawiki/index.php/Louise&quot;&gt;Louise&lt;/a&gt;, which locates in west campus.&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;Yale owns several large HPC clusters. I normally work with &lt;a href=&quot;http://maguro.cs.yale.edu/mediawiki/index.php/Louise&quot;&gt;Louise&lt;/a&gt;, which locates in west campus.&lt;/p&gt;
 
 &lt;p&gt;Previously, I used &lt;a href=&quot;http://rsug.itd.umich.edu/software/fugu/&quot;&gt;Fugu&lt;/a&gt;, which is suggested in the &lt;a href=&quot;http://its.yale.edu/&quot;&gt;ITS website&lt;/a&gt;, to interchange files with the cluster. However, I then found another tool much more convenient than Fugu, which is called &lt;a href=&quot;http://panic.com/transmit/&quot;&gt;Transmit&lt;/a&gt;.&lt;/p&gt;
 
@@ -318,17 +326,20 @@ grid.raster(img)
 
 set timeout 20 
 
-set usr &amp;quot;username&amp;quot;
-set password &amp;quot;password&amp;quot;
+set usr &quot;username&quot;
+set password &quot;password&quot;
 
 spawn ssh $usr@louise.hpc.yale.edu -XYC
-expect &amp;quot;username@louise.hpc.yale.edu&amp;#39;s password:&amp;quot;
-send &amp;quot;$password\r&amp;quot;
+expect &quot;username@louise.hpc.yale.edu&#39;s password:&quot;
+send &quot;$password\r&quot;
 
-expect &amp;quot;username@login-*-*:&amp;quot;
-send &amp;quot;qsub -I -X -l nodes=1:ppn=1\r&amp;quot;
+expect &quot;username@login-*-*:&quot;
+send &quot;qsub -I -X -l nodes=1:ppn=1\r&quot;
 
-interact&lt;/code&gt;&lt;/pre&gt;</content>
+interact
+&lt;/code&gt;&lt;/pre&gt;
+
+</content>
  </entry>
  
  <entry>
@@ -336,24 +347,29 @@ interact&lt;/code&gt;&lt;/pre&gt;</content>
    <link href="xiu-huang.com/r/2013/03/22/Work-with-Rstudio-and-Wordpress-blogs"/>
    <updated>2013-03-22T00:00:00-04:00</updated>
    <id>xiu-huang.com/r/2013/03/22/Work-with-Rstudio-and-Wordpress-blogs</id>
-   <content type="html">&lt;p&gt;After some exploration, I finally got it work to publish blogs directly from Rstudio Rmarkdown file, thanks to the direction &lt;a href=&quot;http://wkmor1.wordpress.com/2012/07/01/rchievement-of-the-day-3-bloggin-from-r-14/&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://yihui.name/knitr/demo/wordpress/&quot;&gt;here&lt;/a&gt;. I have also wrapped up my own function to run the whole process automatically.&lt;/p&gt;
+   <content type="html">
+&lt;p&gt;After some exploration, I finally got it work to publish blogs directly from Rstudio Rmarkdown file, thanks to the direction &lt;a href=&quot;http://wkmor1.wordpress.com/2012/07/01/rchievement-of-the-day-3-bloggin-from-r-14/&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://yihui.name/knitr/demo/wordpress/&quot;&gt;here&lt;/a&gt;. I have also wrapped up my own function to run the whole process automatically.&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;post_to_wp &amp;lt;- function (file, title) {    
   library(RWordPress)    
-  options(WordpressLogin = c(hoyden0329 = &amp;#39;password&amp;#39;),      
-  WordpressURL = &amp;#39;http://hoyden0329.wordpress.com/  xmlrpc.php&amp;#39;)    
+  options(WordpressLogin = c(hoyden0329 = &#39;password&#39;),      
+  WordpressURL = &#39;http://hoyden0329.wordpress.com/  xmlrpc.php&#39;)    
   getUsersBlogs()    
   library(knitr)    
-  opts_knit$set(base.url = &amp;#39;https://dl.dropbox.com/u/11830378/wp/&amp;#39;,    
-  base.dir = &amp;#39;/Users/xiuhuang/Dropbox/Public/wp/&amp;#39;)    
+  opts_knit$set(base.url = &#39;https://dl.dropbox.com/u/11830378/wp/&#39;,    
+  base.dir = &#39;/Users/xiuhuang/Dropbox/Public/wp/&#39;)    
   knit2wp(file, title = title)    
-}    &lt;/code&gt;&lt;/pre&gt;
+}    
+&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Basically, after I got the .Rmd file ready, I can just run&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;post_to_wp(file=&amp;quot;Work_with_Rstudio_and_Wordpress_blogs.Rmd&amp;quot;, title=&amp;quot;Work with Rstudio and Wordpress blogs&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;post_to_wp(file=&quot;Work_with_Rstudio_and_Wordpress_blogs.Rmd&quot;, title=&quot;Work with Rstudio and Wordpress blogs&quot;)
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;And the blog will then magically show itself inside my blog site! Cool!&lt;/p&gt;</content>
+&lt;p&gt;And the blog will then magically show itself inside my blog site! Cool!&lt;/p&gt;
+
+</content>
  </entry>
  
  <entry>
@@ -361,7 +377,9 @@ interact&lt;/code&gt;&lt;/pre&gt;</content>
    <link href="xiu-huang.com/r/2013/03/22/Reproducible-research"/>
    <updated>2013-03-22T00:00:00-04:00</updated>
    <id>xiu-huang.com/r/2013/03/22/Reproducible-research</id>
-   <content type="html">&lt;p&gt;I have decided to adopt &lt;strong&gt;Reproducible Research&lt;/strong&gt; in my research life recently after reading &lt;a href=&quot;http://yihui.name/knitr/&quot;&gt;blogs of Yihui Xie&lt;/a&gt;. Today I came across a very useful &lt;a href=&quot;http://www.carlboettiger.info/index.html&quot;&gt;blog of Carl Boettiger&lt;/a&gt;. Essentially he promotes the same idea as Yihui but pushes it further to online publicated lab notebook. I believe the idea that bioinformaticians also need lab notebooks to keep track of everyday research. To maintain an electronic research notebook might be a good strategy to get ideas straight and keep records. You might want to check these two interviews of him (click &lt;a href=&quot;http://www.nature.com/naturejobs/science/articles/10.1038/nj7434-711a&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://sciencecareers.sciencemag.org/career_magazine/previous_issues/articles/2010_04_09/caredit.a1000036&quot;&gt;here&lt;/a&gt;) to get a better idea. You might also want to check his &lt;a href=&quot;http://www.carlboettiger.info/2012/05/06/research-workflow.html&quot;&gt;workflow&lt;/a&gt; in using R for computational ecology researches.&lt;/p&gt;</content>
+   <content type="html">
+&lt;p&gt;I have decided to adopt &lt;strong&gt;Reproducible Research&lt;/strong&gt; in my research life recently after reading &lt;a href=&quot;http://yihui.name/knitr/&quot;&gt;blogs of Yihui Xie&lt;/a&gt;. Today I came across a very useful &lt;a href=&quot;http://www.carlboettiger.info/index.html&quot;&gt;blog of Carl Boettiger&lt;/a&gt;. Essentially he promotes the same idea as Yihui but pushes it further to online publicated lab notebook. I believe the idea that bioinformaticians also need lab notebooks to keep track of everyday research. To maintain an electronic research notebook might be a good strategy to get ideas straight and keep records. You might want to check these two interviews of him (click &lt;a href=&quot;http://www.nature.com/naturejobs/science/articles/10.1038/nj7434-711a&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;http://sciencecareers.sciencemag.org/career_magazine/previous_issues/articles/2010_04_09/caredit.a1000036&quot;&gt;here&lt;/a&gt;) to get a better idea. You might also want to check his &lt;a href=&quot;http://www.carlboettiger.info/2012/05/06/research-workflow.html&quot;&gt;workflow&lt;/a&gt; in using R for computational ecology researches.&lt;/p&gt;
+</content>
  </entry>
  
  
